@@ -57,7 +57,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         if (countRecordsFromTable(STUDENT_TABLE_NAME) == 0)
         {
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + "(Fname, Lname, Email, Age, GPA, MajorId) VALUES ('John', 'Man', 'jman@gmail.com', 19, 4.0, 1);");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + "(Fname, Lname, Email, Age, GPA, MajorId) VALUES ('Alex', 'Hyde', 'ahyde@gmail.com', 21, 2.7, 2);");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + "(Fname, Lname, Email, Age, GPA, MajorId) VALUES ('Matt', 'Cuda', 'mcuda@gmail.com', 20, 3.3, 3);");
 
+            //close the database
+            db.close();
         }
     }
 
