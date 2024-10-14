@@ -7,4 +7,186 @@
     android:layout_height="match_parent"
     tools:context=".AddNewStudent">
 
+    <EditText
+        android:id="@+id/et_v_as_gpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="2.7"
+        android:inputType="number|numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/et_v_as_age"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_age" />
+
+    <EditText
+        android:id="@+id/et_v_as_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Mahn"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_as_lname"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_firstname" />
+
+    <EditText
+        android:id="@+id/et_v_as_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="74dp"
+        android:ems="10"
+        android:hint="ex: jmahn2"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_as_username"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_as_gpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPA"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_gpa"
+        app:layout_constraintEnd_toEndOf="@+id/tv_v_as_age"
+        app:layout_constraintStart_toStartOf="@+id/tv_v_as_major" />
+
+    <EditText
+        android:id="@+id/et_v_as_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="19"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/et_v_as_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_email" />
+
+    <Spinner
+        android:id="@+id/spn_v_as_majors"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="27dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_as_gpa"
+        app:layout_constraintStart_toStartOf="@+id/et_v_as_gpa"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_gpa" />
+
+    <TextView
+        android:id="@+id/tv_v_as_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_username"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Username" />
+
+    <TextView
+        android:id="@+id/tv_v_as_fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:text="First Name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_firstname"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_as_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="Age"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_v_as_email"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_as_email" />
+
+    <TextView
+        android:id="@+id/tv_v_as_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:text="Email"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_email"
+        app:layout_constraintEnd_toStartOf="@+id/et_v_as_email" />
+
+    <EditText
+        android:id="@+id/et_v_as_firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="John"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_as_fname"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_username" />
+
+    <EditText
+        android:id="@+id/et_v_as_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:hint="jmahn@monroeccc.edu"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/et_v_as_lname"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_lname" />
+
+    <TextView
+        android:id="@+id/tv_v_as_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:text="Last Name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_lname"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_as_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:text="Major"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spn_v_as_majors"
+        app:layout_constraintEnd_toStartOf="@+id/spn_v_as_majors" />
+
+    <Button
+        android:id="@+id/btn_v_as_addstudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Add Student"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_v_as_addmajor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_v_as_addmajor" />
+
+    <Button
+        android:id="@+id/btn_v_as_addmajor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="143dp"
+        android:text="Add New Major"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_v_as_gpa"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_v_as_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Return Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,14 +9,29 @@
 
     <Button
         android:id="@+id/btn_v_m_addstudent"
-        android:layout_width="192dp"
-        android:layout_height="80dp"
+        android:layout_width="149dp"
+        android:layout_height="61dp"
         android:text="Add New Student"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344" />
+
+    <Button
+        android:id="@+id/btn_v_m_filterstudent"
+        android:layout_width="149dp"
+        android:layout_height="61dp"
+        android:text="Search Students"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
 
     <TextView
         android:id="@+id/tv_v_m_dbtitle"
