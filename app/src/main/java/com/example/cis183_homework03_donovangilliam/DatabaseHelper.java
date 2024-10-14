@@ -122,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public void filterStudentsByName(String name)
     {
-
+        getMajorIdFromName("name");
     }
 
     public void filterStudentsByUname(String username)
