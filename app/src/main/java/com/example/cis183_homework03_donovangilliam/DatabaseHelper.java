@@ -22,7 +22,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Setup
-
     @Override
     public void onCreate(SQLiteDatabase db)
     {
@@ -100,9 +99,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
         if (countRecordsFromTable(MAJORS_TABLE_NAME) == 0)
         {
             SQLiteDatabase db = this.getWritableDatabase();
-            db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME + "(MajorId, MajorName, MajorPrefix) VALUES (0, 'App Development', 'CIS');");
-            db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME + "(MajorId, MajorName, MajorPrefix) VALUES (1, 'General Psychology', 'PSYCH');");
-            db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME + "(MajorId, MajorName, MajorPrefix) VALUES (2, 'Information Security', 'CIA');");
+            db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME +
+                    "(MajorId, " +
+                    "MajorName, " +
+                    "MajorPrefix) VALUES (0, 'App Development', 'CIS');");
+            db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME +
+                    "(MajorId, " +
+                    "MajorName, " +
+                    "MajorPrefix) VALUES (1, 'General Psychology', 'PSYCH');");
+            db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME +
+                    "(MajorId, " +
+                    "MajorName, " +
+                    "MajorPrefix) VALUES (2, 'Information Security', 'CIA');");
 
             db.close();
         }
@@ -119,6 +127,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //Data Manip
 
+
+    //FILTERING
     public void filterStudentsByName(String name)
     {
 
@@ -139,6 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
+    //MAJOR ID GETTING
     public int getMajorIdFromName(String mn)
     {
         int id = 0;
@@ -177,6 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return id;
     }
 
+    //DUPE CHECKING
     public boolean findDuplicateStudents(String u)
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -206,8 +218,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return true;
         }
     }
+
+    //ADDING AND UPDATING DATA
     public void addStudentToDb(Student student)
     {
+        //Add to database
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("Username", student.getUsername());
@@ -218,10 +233,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cv.put("GPA", student.getGPA());
         cv.put("MajorId", student.getMajorId());
         db.insert(STUDENT_TABLE_NAME, null, cv);
+        db.close();
     }
 
     public void addMajorToDb(Major major)
     {
+        //Add to database
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("MajorID", major.getMajorId());
@@ -230,6 +247,4 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.insert(MAJORS_TABLE_NAME, null, cv);
         db.close();
     }
-
-
 }

@@ -8,22 +8,55 @@
     tools:context=".AddNewMajor">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/et_v_am_majorprefix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="95dp"
         android:ems="10"
+        android:hint="e.g. CIS"
         android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="95dp" />
+        app:layout_constraintStart_toEndOf="@+id/tv_v_am_majorprefix"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/et_v_am_majorname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
+        android:hint="e.g. Mobile App Develop..."
         android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="204dp" />
+        app:layout_constraintStart_toEndOf="@+id/tv_v_am_majorname"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_am_majorprefix" />
+
+    <Button
+        android:id="@+id/btn_v_am_addmajor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#40CE44"
+        android:text="Add Major"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_am_majorprefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Major Prefix"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_am_majorprefix"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_am_majorname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Major Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_am_majorname"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
