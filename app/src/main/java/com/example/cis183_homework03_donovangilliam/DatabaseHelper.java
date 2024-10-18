@@ -247,4 +247,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.insert(MAJORS_TABLE_NAME, null, cv);
         db.close();
     }
+
+    public void updateStudentInfo(Student student)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+    }
 }

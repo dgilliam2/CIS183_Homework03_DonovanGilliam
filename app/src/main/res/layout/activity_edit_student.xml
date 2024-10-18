@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditStudent">
+
+    <TextView
+        android:id="@+id/tv_v_es_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:text="Age"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_age"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spn_v_es_majors"
+        android:layout_width="204dp"
+        android:layout_height="26dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_v_es_major"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_es_fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="First Name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_fname"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_es_fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="John"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_es_fname"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_es_username" />
+
+    <TextView
+        android:id="@+id/tv_v_es_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="36dp"
+        android:text="Major"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_es_gpa" />
+
+    <TextView
+        android:id="@+id/tv_v_es_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_username"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Username" />
+
+    <TextView
+        android:id="@+id/tv_v_es_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:text="Email"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_email"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_es_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="67dp"
+        android:ems="10"
+        android:hint="e.g. jmahn2"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_es_username"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_es_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="19"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/et_v_es_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_es_email" />
+
+    <TextView
+        android:id="@+id/tv_v_es_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Last Name"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_lname"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_es_gpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="2.7"
+        android:inputType="number|numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/et_v_es_age"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_es_age" />
+
+    <EditText
+        android:id="@+id/et_v_es_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:hint="jmahn@monroeccc.edu"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_es_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_es_lname" />
+
+    <TextView
+        android:id="@+id/tv_v_es_gpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:text="GPA"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_gpa"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_es_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="Mahn"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_es_lname"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_es_fname" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="69dp"
+        android:backgroundTint="#40CE44"
+        android:text="Confirm Edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
