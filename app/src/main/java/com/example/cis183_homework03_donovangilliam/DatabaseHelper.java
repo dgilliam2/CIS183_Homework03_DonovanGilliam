@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -14,9 +15,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "StudentReg.db";
     private static final String STUDENT_TABLE_NAME = "Students";
     private static final String MAJORS_TABLE_NAME = "Majors";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
-    public  DatabaseHelper(Context c)
+    public DatabaseHelper(Context c)
     {
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -33,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 "Email varchar(50), " +
                 "Age integer NOT NULL, " +
                 "GPA float NOT NULL, " +
-                "MajorId varchar(50), " +
+                "MajorId integer NOT NULL, " +
                 "FOREIGN KEY (MajorId) REFERENCES " +
                  MAJORS_TABLE_NAME +
                 " (MajorId));");
@@ -53,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    private void initData()
+    public void initData()
     {
         initStudents();
         initMajors();
@@ -71,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                     "Email, " +
                     "Age, " +
                     "GPA, " +
-                    "MajorId) VALUES ('John', 'Man', 'jman@gmail.com', 19, 4.0, 1);");
+                    "MajorId) VALUES ('jmahn2','John', 'Man', 'jman@gmail.com', 19, 4.0, 1);");
             db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME +
                     "(Username," +
                     "Fname, " +
@@ -79,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                     "Email, " +
                     "Age, " +
                     "GPA, " +
-                    "MajorId) VALUES ('Alex', 'Hyde', 'ahyde@gmail.com', 21, 2.7, 2);");
+                    "MajorId) VALUES ('ahy3','Alex', 'Hyde', 'ahyde@gmail.com', 21, 2.7, 2);");
             db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME +
                     "(Username, " +
                     "Fname, " +
@@ -87,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                     "Email, " +
                     "Age, " +
                     "GPA, " +
-                    "MajorId) VALUES ('Matt', 'Cuda', 'mcuda@gmail.com', 20, 3.3, 3);");
+                    "MajorId) VALUES ('mc20mc','Matt', 'Cuda', 'mcuda@gmail.com', 20, 3.3, 3);");
 
             //close the database
             db.close();
@@ -102,15 +103,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
             db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME +
                     "(MajorId, " +
                     "MajorName, " +
-                    "MajorPrefix) VALUES (0, 'App Development', 'CIS');");
+                    "MajorPrefix) VALUES (1, 'App Development', 'CIS');");
             db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME +
                     "(MajorId, " +
                     "MajorName, " +
-                    "MajorPrefix) VALUES (1, 'General Psychology', 'PSYCH');");
+                    "MajorPrefix) VALUES (2, 'General Psychology', 'PSYCH');");
             db.execSQL("INSERT INTO " + MAJORS_TABLE_NAME +
                     "(MajorId, " +
                     "MajorName, " +
-                    "MajorPrefix) VALUES (2, 'Information Security', 'CIA');");
+                    "MajorPrefix) VALUES (3, 'Information Security', 'CIA');");
 
             db.close();
         }
@@ -127,6 +128,34 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //Data Manip
 
+    //POPULATING ARRAYS
+    public void fillStudentArray(ArrayList<Student> al)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String select = "SELECT * FROM " + STUDENT_TABLE_NAME + ";";
+        Cursor cursor = db.rawQuery(select, null);
+        //clear to prevent duplicates should the database be updated
+        al.clear();
+        if (cursor != null)
+        {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                String username = cursor.getString(0);
+                String fname = cursor.getString(1);
+                String lname = cursor.getString(2);
+                String email = cursor.getString(3);
+                int age = cursor.getInt(4);
+                float gpa = cursor.getFloat(5);
+                int majorId = cursor.getInt(6);
+                Student student = new Student(username, fname, lname, email, age, gpa, majorId);
+                // Add the student to the ArrayList
+                al.add(student);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+    }
 
     //FILTERING
     public void filterStudentsByName(String name)
@@ -149,7 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
-    //MAJOR ID GETTING
+    //MAJOR INFO
     public int getMajorIdFromName(String mn)
     {
         int id = 0;
@@ -188,6 +217,38 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return id;
     }
 
+    public String getMajorPrefixFromId(int mi)
+    {
+        String prefix = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "SELECT MajorPrefix FROM " + MAJORS_TABLE_NAME + " WHERE MajorId = '" + mi + "';";
+        Cursor cursor = db.rawQuery(select, null);
+        if (cursor != null)
+        {
+            cursor.moveToFirst();
+            prefix = cursor.getString(0);
+            cursor.close();
+            db.close();
+        }
+        return prefix;
+    }
+
+    public String getMajorNameFromId(int mi)
+    {
+        String name = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "SELECT MajorName FROM " + MAJORS_TABLE_NAME + " WHERE MajorId = '" + mi + "';";
+        Cursor cursor = db.rawQuery(select, null);
+        if (cursor != null)
+        {
+            cursor.moveToFirst();
+            name = cursor.getString(0);
+            cursor.close();
+            db.close();
+        }
+        return name;
+    }
+
     //DUPE CHECKING
     public boolean findDuplicateStudents(String u)
     {
@@ -219,7 +280,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
-    //ADDING AND UPDATING DATA
+    //ADDING, REMOVING, AND UPDATING DATA
     public void addStudentToDb(Student student)
     {
         //Add to database
@@ -246,6 +307,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cv.put("MajorPrefix", major.getMajorPrefix());
         db.insert(MAJORS_TABLE_NAME, null, cv);
         db.close();
+    }
+
+    public void removeStudentFromDb(Student student)
+    {
+
     }
 
     public void updateStudentInfo(Student student)
