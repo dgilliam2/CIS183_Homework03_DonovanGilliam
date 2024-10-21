@@ -127,6 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return numRows;
     }
 
+    //For Testing
     public List<String> returnMajorsTable()
     {
         List<String> data = new ArrayList<>();
