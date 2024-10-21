@@ -59,4 +59,32 @@
         android:text="Major Name"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_v_am_majorname"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_am_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error: All fields must be filled"
+        android:textColor="#D35252"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.407" />
+
+    <TextView
+        android:id="@+id/tv_v_am_duplicate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error: Major already exists"
+        android:textColor="#D35252"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
 </androidx.constraintlayout.widget.ConstraintLayout>

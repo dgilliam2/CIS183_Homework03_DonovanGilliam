@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String STUDENT_TABLE_NAME = "Students";
     private static final String MAJORS_TABLE_NAME = "Majors";
     //put version up here too so i can change it easier
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     public DatabaseHelper(Context c)
     {
@@ -257,20 +257,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return name;
     }
 
+
     //DUPE CHECKING
     public boolean findDuplicateStudents(String u)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String select = "SELECT Username FROM " + STUDENT_TABLE_NAME + " WHERE Username = '" + u + "';";
         Cursor cursor = db.rawQuery(select, null);
-        if (cursor == null)
+        if (cursor.moveToFirst())
         {
-            return false;
+            db.close();
+            return true;
         }
         else
         {
             cursor.close();
-            return true;
+            db.close();
+            return false;
         }
     }
 
@@ -279,14 +282,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         String select = "SELECT MajorId FROM " + MAJORS_TABLE_NAME + " WHERE MajorName = '" + mn + "';";
         Cursor cursor = db.rawQuery(select, null);
-        if (cursor == null)
+        if (cursor.moveToFirst())
         {
-            return false;
+            db.close();
+            return true;
         }
         else
         {
             cursor.close();
-            return true;
+            db.close();
+            return false;
         }
     }
 

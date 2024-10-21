@@ -11,16 +11,13 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
 public class AddNewStudent extends AppCompatActivity
 {
-    TextView tv_j_as_error;
     TextView tv_j_as_duplicate;
+    TextView tv_j_as_error;
 
     EditText et_j_as_username;
     EditText et_j_as_fname;
@@ -35,8 +32,8 @@ public class AddNewStudent extends AppCompatActivity
 
     Spinner spn_j_as_majors;
 
-    Intent intent_j_addmajor;
-    Intent intent_j_return;
+    Intent intent_j_as_addmajor;
+    Intent intent_j_as_return;
 
     DatabaseHelper dbHelper;
 
@@ -67,8 +64,8 @@ public class AddNewStudent extends AppCompatActivity
 
         spn_j_as_majors = findViewById(R.id.spn_v_as_majors);
 
-        intent_j_addmajor = new Intent(AddNewStudent.this,AddNewMajor.class);
-        intent_j_return = new Intent(AddNewStudent.this, MainActivity.class);
+        intent_j_as_addmajor = new Intent(AddNewStudent.this,AddNewMajor.class);
+        intent_j_as_return = new Intent(AddNewStudent.this, MainActivity.class);
 
         dbHelper = new DatabaseHelper(this);
 
@@ -102,6 +99,15 @@ public class AddNewStudent extends AppCompatActivity
                         student.setMajorId(dbHelper.getMajorIdFromName(spn_j_as_majors.getSelectedItem().toString()));
 
                         dbHelper.addStudentToDb(student);
+                        et_j_as_username.setText("");
+                        et_j_as_fname.setText("");
+                        et_j_as_lname.setText("");
+                        et_j_as_email.setText("");
+                        et_j_as_age.setText("");
+                        et_j_as_gpa.setText("");
+                        spn_j_as_majors.setSelection(0);
+                        tv_j_as_duplicate.setVisibility(View.INVISIBLE);
+                        tv_j_as_error.setVisibility(View.INVISIBLE);
                     }
                     else
                     {
@@ -123,7 +129,7 @@ public class AddNewStudent extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                startActivity(intent_j_addmajor);
+                startActivity(intent_j_as_addmajor);
             }
         });
     }
@@ -135,7 +141,7 @@ public class AddNewStudent extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                startActivity(intent_j_return);
+                startActivity(intent_j_as_return);
             }
         });
     }
