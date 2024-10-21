@@ -28,7 +28,7 @@
         android:hint="Mahn"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/tv_v_as_lname"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_as_firstname" />
+        app:layout_constraintTop_toBottomOf="@+id/et_v_as_fname" />
 
     <EditText
         android:id="@+id/et_v_as_username"
@@ -90,7 +90,7 @@
         android:layout_marginStart="41dp"
         android:text="First Name"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_firstname"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_fname"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toStartOf="@+id/et_v_as_email" />
 
     <EditText
-        android:id="@+id/et_v_as_firstname"
+        android:id="@+id/et_v_as_fname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -191,5 +191,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_as_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error: All fields must be filled"
+        android:textColor="#D35252"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

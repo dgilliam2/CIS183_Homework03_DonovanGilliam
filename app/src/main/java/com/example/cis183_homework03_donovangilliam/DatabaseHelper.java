@@ -15,7 +15,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "StudentReg.db";
     private static final String STUDENT_TABLE_NAME = "Students";
     private static final String MAJORS_TABLE_NAME = "Majors";
-    private static final int DATABASE_VERSION = 3;
+    //put version up here too so i can change it easier
+    private static final int DATABASE_VERSION = 4;
 
     public DatabaseHelper(Context c)
     {
@@ -72,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                     "Email, " +
                     "Age, " +
                     "GPA, " +
-                    "MajorId) VALUES ('jmahn2','John', 'Man', 'jman@gmail.com', 19, 4.0, 1);");
+                    "MajorId) VALUES ('jmahn2','John', 'Mahn', 'jman@gmail.com', 19, 4.0, 1);");
             db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME +
                     "(Username," +
                     "Fname, " +
@@ -140,7 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
         if (cursor != null)
         {
             cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
+            while (!cursor.isAfterLast())
+            {
                 String username = cursor.getString(0);
                 String fname = cursor.getString(1);
                 String lname = cursor.getString(2);
@@ -157,23 +159,29 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
+    public void fillMajorNameArray(ArrayList<String> al)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String select = "SELECT * FROM " + MAJORS_TABLE_NAME + ";";
+        Cursor cursor = db.rawQuery(select, null);
+        //clear to prevent duplicates should the database be updated
+        al.clear();
+        if (cursor != null)
+        {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                String name = cursor.getString(1);
+                // Add the major to the ArrayList
+                al.add(name);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+    }
+
     //FILTERING
-    public void filterStudentsByName(String name)
-    {
-
-    }
-
-    public void filterStudentsByUname(String username)
-    {
-
-    }
-
-    public void filterStudentsByMajor(int major)
-    {
-
-    }
-
-    public void filterStudentsByGpa(float gpa)
+    public void filterStudents(String statement)
     {
 
     }
@@ -261,14 +269,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         else
         {
+            cursor.close();
             return true;
         }
     }
 
-    public boolean findDuplicateMajors(int mi)
+    public boolean findDuplicateMajors(String mn)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String select = "SELECT MajorId FROM " + MAJORS_TABLE_NAME + " WHERE MajorId = '" + mi + "';";
+        String select = "SELECT MajorId FROM " + MAJORS_TABLE_NAME + " WHERE MajorName = '" + mn + "';";
         Cursor cursor = db.rawQuery(select, null);
         if (cursor == null)
         {
@@ -276,6 +285,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         else
         {
+            cursor.close();
             return true;
         }
     }
@@ -284,6 +294,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public void addStudentToDb(Student student)
     {
         //Add to database
+        //this is a lot more concise and easier to write than a raw SQL statement in this case
+        //equivalent to db.execSQL(INSERT INTO Students(etc) VALUES etc,etc,etc)
+        //possibly(likely?) slower than raw SQL, but doesn't matter here
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("Username", student.getUsername());
@@ -299,23 +312,48 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public void addMajorToDb(Major major)
     {
-        //Add to database
+        //see above
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("MajorID", major.getMajorId());
         cv.put("MajorName", major.getMajorName());
         cv.put("MajorPrefix", major.getMajorPrefix());
         db.insert(MAJORS_TABLE_NAME, null, cv);
         db.close();
     }
 
-    public void removeStudentFromDb(Student student)
+    public void removeStudentFromDb(String u)
     {
-
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(STUDENT_TABLE_NAME,"Username = ?", new String[]{u});
+        //same as this, minus the placeholder
+        //db.execSQL("DELETE FROM " + STUDENT_TABLE_NAME + " WHERE Username = '" + u + "';");
+        db.close();
     }
 
     public void updateStudentInfo(Student student)
     {
         SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("Fname", student.getFname());
+        cv.put("Lname", student.getLname());
+        cv.put("Email", student.getEmail());
+        cv.put("Age", student.getAge());
+        cv.put("GPA", student.getGPA());
+        cv.put("MajorId", student.getMajorId());
+        db.update(STUDENT_TABLE_NAME, cv, "Username = ?", new String[]{student.getUsername()});
+        //^equivalent to this, minus the placeholder
+        //android docs say to use these for insert, delete, update
+        //use rawQuery for SELECT
+        /*db.execSQL("UPDATE "
+                + STUDENT_TABLE_NAME
+                + " SET " +
+                "Fname = '" + student.getFname() +
+                "', Lname= '" + student.getLname() +
+                "', Email = '" + student.getEmail() +
+                "', Age = " + student.getAge() +
+                ", GPA = " + student.getGPA() +
+                ", MajorId = " + student.getMajorId() +
+                " WHERE Username = '" + student.getUsername() + "';");*/
+        db.close();
     }
 }

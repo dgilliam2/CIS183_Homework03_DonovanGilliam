@@ -39,13 +39,13 @@
         android:id="@+id/et_v_es_fname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="John"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/tv_v_es_fname"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_es_username" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_v_es_major"
@@ -59,17 +59,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_v_es_gpa" />
 
     <TextView
-        android:id="@+id/tv_v_es_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_username"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Username" />
-
-    <TextView
         android:id="@+id/tv_v_es_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,18 +67,6 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_v_es_email"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/et_v_es_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="67dp"
-        android:ems="10"
-        android:hint="e.g. jmahn2"
-        android:inputType="text"
-        app:layout_constraintStart_toEndOf="@+id/tv_v_es_username"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_v_es_age"
@@ -161,10 +138,37 @@
         android:id="@+id/btn_v_es_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="69dp"
         android:backgroundTint="#40CE44"
         android:text="Confirm Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.714" />
+
+    <Button
+        android:id="@+id/btn_v_es_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#D35252"
+        android:text="Return"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.869" />
+
+    <TextView
+        android:id="@+id/tv_v_es_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error: All fields must be filled"
+        android:textColor="#D35252"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637" />
 </androidx.constraintlayout.widget.ConstraintLayout>
