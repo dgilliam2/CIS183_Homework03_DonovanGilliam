@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class AddNewStudent extends AppCompatActivity
 {
     TextView tv_j_as_error;
+    TextView tv_j_as_duplicate;
 
     EditText et_j_as_username;
     EditText et_j_as_fname;
@@ -51,6 +52,7 @@ public class AddNewStudent extends AppCompatActivity
         setContentView(R.layout.activity_add_new_student);
 
         tv_j_as_error = findViewById(R.id.tv_v_as_error);
+        tv_j_as_duplicate = findViewById(R.id.tv_v_as_duplicate);
 
         et_j_as_username = findViewById(R.id.et_v_as_username);
         et_j_as_fname = findViewById(R.id.et_v_as_fname);
@@ -88,17 +90,23 @@ public class AddNewStudent extends AppCompatActivity
             {
                 if (fieldsNotNull())
                 {
-                    Student student = new Student();
-                    student.setUsername(et_j_as_username.getText().toString());
-                    student.setFname(et_j_as_fname.getText().toString());
-                    student.setLname(et_j_as_lname.getText().toString());
-                    student.setEmail(et_j_as_email.getText().toString());
-                    student.setAge(Integer.parseInt(et_j_as_age.getText().toString()));
-                    student.setGPA(Float.parseFloat(et_j_as_gpa.getText().toString()));
-                    student.setMajorId(dbHelper.getMajorIdFromName(spn_j_as_majors.getSelectedItem().toString()));
+                    if (!dbHelper.findDuplicateStudents(et_j_as_username.getText().toString()))
+                    {
+                        Student student = new Student();
+                        student.setUsername(et_j_as_username.getText().toString());
+                        student.setFname(et_j_as_fname.getText().toString());
+                        student.setLname(et_j_as_lname.getText().toString());
+                        student.setEmail(et_j_as_email.getText().toString());
+                        student.setAge(Integer.parseInt(et_j_as_age.getText().toString()));
+                        student.setGPA(Float.parseFloat(et_j_as_gpa.getText().toString()));
+                        student.setMajorId(dbHelper.getMajorIdFromName(spn_j_as_majors.getSelectedItem().toString()));
 
-                    dbHelper.addStudentToDb(student);
-                    startActivity(intent_j_return);
+                        dbHelper.addStudentToDb(student);
+                    }
+                    else
+                    {
+                        tv_j_as_duplicate.setVisibility(View.VISIBLE);
+                    }
                 }
                 else
                 {

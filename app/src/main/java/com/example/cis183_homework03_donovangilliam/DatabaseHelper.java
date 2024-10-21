@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String STUDENT_TABLE_NAME = "Students";
     private static final String MAJORS_TABLE_NAME = "Majors";
     //put version up here too so i can change it easier
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     public DatabaseHelper(Context c)
     {
