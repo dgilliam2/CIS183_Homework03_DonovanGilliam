@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -16,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String STUDENT_TABLE_NAME = "Students";
     private static final String MAJORS_TABLE_NAME = "Majors";
     //put version up here too so i can change it easier
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     public DatabaseHelper(Context c)
     {
@@ -124,6 +125,24 @@ public class DatabaseHelper extends SQLiteOpenHelper
         int numRows = (int) DatabaseUtils.queryNumEntries(db, tableName);
         db.close();
         return numRows;
+    }
+
+    public List<String> returnMajorsTable()
+    {
+        List<String> data = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "SELECT * FROM " + MAJORS_TABLE_NAME;
+        Cursor cursor = db.rawQuery(select,null);
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                data.add(cursor.getString(1));
+            }
+            while(cursor.moveToNext());
+        }
+
+        return data;
     }
 
 

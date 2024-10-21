@@ -2,6 +2,7 @@ package com.example.cis183_homework03_donovangilliam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,10 @@ public class AddNewMajor extends AppCompatActivity {
 
         btn_j_am_addmajor = findViewById(R.id.btn_v_am_addmajor);
 
+        intent_j_am_confirm = new Intent(AddNewMajor.this, AddNewStudent.class);
+
+        dbHelper = new DatabaseHelper(this);
+
         addMajorConfirmListener();
 
 
@@ -59,10 +64,11 @@ public class AddNewMajor extends AppCompatActivity {
                     if (!dbHelper.findDuplicateMajors(et_j_am_majorname.getText().toString()))
                     {
                         Major major = new Major();
-                        major.setMajorPrefix(et_j_am_majorprefix.getText().toString());
                         major.setMajorName(et_j_am_majorname.getText().toString());
+                        major.setMajorPrefix(et_j_am_majorprefix.getText().toString());
                         dbHelper.addMajorToDb(major);
                         startActivity(intent_j_am_confirm);
+                        Log.d("MAJORS TABLE: ", dbHelper.returnMajorsTable().toString());
                     }
                     else
                     {
