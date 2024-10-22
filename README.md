@@ -1,0 +1,1 @@
+This is an Android application that allows the "admin" to view all students in the database, search by filter for specific students, create new student entries in the database, edit existing student information, and add new majors.
