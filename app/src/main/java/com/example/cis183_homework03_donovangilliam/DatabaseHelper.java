@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String STUDENT_TABLE_NAME = "Students";
     private static final String MAJORS_TABLE_NAME = "Majors";
     //put version up here too so i can change it easier
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     public DatabaseHelper(Context c)
     {
@@ -156,6 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             }
             cursor.close();
         }
+        db.close();
     }
 
     public void fillMajorNameArray(ArrayList<String> al)
@@ -177,6 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             }
             cursor.close();
         }
+        db.close();
     }
 
     //FILTERING
@@ -205,6 +207,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             }
             cursor.close();
         }
+        db.close();
     }
 
     //MAJOR INFO
@@ -223,8 +226,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cursor.moveToFirst();
             id = cursor.getInt(0);
             cursor.close();
-            db.close();
         }
+        db.close();
         return id;
     }
 
@@ -241,6 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cursor.close();
             db.close();
         }
+        db.close();
         return prefix;
     }
 
@@ -255,8 +259,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cursor.moveToFirst();
             name = cursor.getString(0);
             cursor.close();
-            db.close();
         }
+        db.close();
         return name;
     }
 
