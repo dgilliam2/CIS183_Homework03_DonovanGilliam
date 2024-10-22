@@ -283,7 +283,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean findDuplicateMajors(String mn)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String select = "SELECT MajorId FROM " + MAJORS_TABLE_NAME + " WHERE MajorName = '" + mn + "';";
+        String select = "SELECT MajorId FROM " + MAJORS_TABLE_NAME + " WHERE MajorName = '" + mn + "' COLLATE NOCASE";
         Cursor cursor = db.rawQuery(select, null);
         if (cursor.moveToFirst())
         {
