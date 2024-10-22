@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,8 +69,8 @@ public class AddNewStudent extends AppCompatActivity
         intent_j_as_return = new Intent(AddNewStudent.this, MainActivity.class);
 
         dbHelper = new DatabaseHelper(this);
-
         dbHelper.fillMajorNameArray(major_list);
+
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, major_list);
         spn_j_as_majors.setAdapter(arrayAdapter);
 
@@ -99,6 +100,8 @@ public class AddNewStudent extends AppCompatActivity
                         student.setMajorId(dbHelper.getMajorIdFromName(spn_j_as_majors.getSelectedItem().toString()));
 
                         dbHelper.addStudentToDb(student);
+                        Toast.makeText(AddNewStudent.this, "Student added to database.", Toast.LENGTH_SHORT).show();
+
                         et_j_as_username.setText("");
                         et_j_as_fname.setText("");
                         et_j_as_lname.setText("");

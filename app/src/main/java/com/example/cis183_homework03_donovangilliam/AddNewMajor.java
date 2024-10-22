@@ -68,7 +68,6 @@ public class AddNewMajor extends AppCompatActivity {
                         major.setMajorPrefix(et_j_am_majorprefix.getText().toString());
                         dbHelper.addMajorToDb(major);
                         startActivity(intent_j_am_confirm);
-                        Log.d("MAJORS TABLE: ", dbHelper.returnMajorsTable().toString());
                     }
                     else
                     {

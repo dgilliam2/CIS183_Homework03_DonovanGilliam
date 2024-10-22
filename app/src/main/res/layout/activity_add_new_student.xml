@@ -77,11 +77,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
-        android:text="TextView"
+        android:text="Username"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_v_as_username"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Username" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_v_as_fname"

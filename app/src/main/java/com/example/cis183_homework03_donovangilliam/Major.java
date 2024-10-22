@@ -2,6 +2,8 @@ package com.example.cis183_homework03_donovangilliam;
 
 public class Major
 {
+    //I never use MajorId when making a Major object, but I will keep it here anyway
+    //There may be a use for it if this program was expanded
     private int MajorId;
     private String MajorName;
     private String MajorPrefix;

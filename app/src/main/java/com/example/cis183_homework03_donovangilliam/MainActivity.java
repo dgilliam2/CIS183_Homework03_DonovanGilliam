@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity
         intent_j_m_addstudent = new Intent(MainActivity.this, AddNewStudent.class);
         intent_j_m_searchstudent = new Intent(MainActivity.this, SearchStudents.class);
         intent_j_m_studentdetails = new Intent(MainActivity.this, DetailedStudentView.class);
-        Intent cameFrom = getIntent();
-
 
         lv_j_m_studentlist.setAdapter(adapter);
 

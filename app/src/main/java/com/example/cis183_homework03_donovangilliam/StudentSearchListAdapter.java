@@ -13,11 +13,13 @@ public class StudentSearchListAdapter extends BaseAdapter
 {
     Context context;
     ArrayList<Student> student_list;
+    DatabaseHelper dbHelper;
 
     public StudentSearchListAdapter(Context c, ArrayList<Student> al)
     {
         context = c;
         student_list = al;
+        dbHelper = new DatabaseHelper(c);
     }
 
     @Override
@@ -41,13 +43,19 @@ public class StudentSearchListAdapter extends BaseAdapter
         if (view == null)
         {
             LayoutInflater mInflater = (LayoutInflater) context.getSystemService((SearchStudents.LAYOUT_INFLATER_SERVICE));
-            view = mInflater.inflate(R.layout.custom_cell_student_list, null);
+            view = mInflater.inflate(R.layout.custom_cell_student_search_list, null);
         }
-        TextView name = view.findViewById(R.id.tv_v_cc_sl_name);
-        TextView username = view.findViewById(R.id.tv_v_cc_sl_username);
+
+        TextView name = view.findViewById(R.id.tv_v_cc_ss_name);
+        TextView username = view.findViewById(R.id.tv_v_cc_ss_username);
+        TextView major = view.findViewById(R.id.tv_v_cc_ss_major);
+        TextView gpa = view.findViewById(R.id.tv_v_cc_ss_gpa);
+
         Student student = student_list.get(i);
-        name.setText("Name: "+ student.getFname() + " " + student.getLname());
+        name.setText("Name: " + student.getFname() + " " + student.getLname());
         username.setText("Username: " + student.getUsername());
+        major.setText("Major: " + dbHelper.getMajorNameFromId(student.getMajorId()));
+        gpa.setText("GPA: " + student.getGPA());
         return view;
     }
 }
